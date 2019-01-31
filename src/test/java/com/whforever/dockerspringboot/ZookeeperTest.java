@@ -4,13 +4,8 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.CuratorWatcher;
 import org.apache.curator.retry.RetryNTimes;
-import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.ZooDefs;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
@@ -38,7 +33,7 @@ public class ZookeeperTest {
 //        System.out.println(result);
         // 设置节点数据
 //        client.setData().forPath("/zookeeper/test", "111".getBytes());
-        client.setData().forPath("/zookeeper/test", "haifeisi".getBytes());
+        client.setData().forPath("/zookeeper/quota", "haifeisi".getBytes());
         // 删除节点
 //        System.out.println(client.checkExists().forPath("/test"));
 //        client.delete().withVersion(-1).forPath("/test");

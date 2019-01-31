@@ -1,18 +1,28 @@
 server:
   port: 8080
+  servlet:
+    context-path: /docker-boot
 
 #TODO: figure out why I need this here and in bootstrap.yml
 spring:
   application:
     name: docker-springboot
+  security:
+    user:
+      name: actuator
+      password: actuator
+      roles: ACTUATOR_ADMIN
 
-ribbon:
-  ServerListRefreshInterval: 1000
+management:
+  endpoint:
+    health:
+      show-details: always
 
-endpoints:
-  health:
-    sensitive: false
-  restart:
-    enabled: true
-  shutdown:
-    enabled: true
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    encoding: @project.build.sourceEncoding@
+    java:
+      version: @java.version@

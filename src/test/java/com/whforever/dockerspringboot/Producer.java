@@ -7,7 +7,6 @@ import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
-import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.junit.Test;
@@ -20,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @Date 2019/1/21 16:05
  **/
 public class Producer {
+
     public void mqProducer() {
         /**
          * 一个应用创建一个Producer，由应用来维护此对象，可以设置为全局对象或者单例<br>
@@ -173,6 +173,5 @@ public class Producer {
     public void test02() {
         testConsumer();
     }
-
 
 }
