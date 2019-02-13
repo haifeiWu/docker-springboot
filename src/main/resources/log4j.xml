@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration status="WARN">
+    <appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d [%t] %-5p %c - %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="info" fileName="${logging.path}/info.log"
+                     filePattern="${logging.path}/history/info.%d.log.gz">
+            <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d %-5p %c.%M:%L -%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="error" fileName="${logging.path}/error.log"
+                     filePattern="${logging.path}/history/error-%d{yyyy-MM-dd}.log.gz">
+            <ThresholdFilter level="WARN" onMatch="NEUTRAL" onMismatch="DENY"/>
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d [%t] %-5p %c - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <AsyncRoot level="info" additivity="false">
+            <AppenderRef ref="Console" level="info"/>
+            <AppenderRef ref="info" level="info"/>
+            <AppenderRef ref="error" level="info"/>
+        </AsyncRoot>
+    </loggers>
+
+</configuration>

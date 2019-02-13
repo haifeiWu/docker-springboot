@@ -3,6 +3,7 @@ package com.whforever.dockerspringboot.config;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.actuate.context.ShutdownEndpoint;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @author wuhf
  * @Date 2019/1/31 15:40
  **/
+@Configuration
 public class ActuatorSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**

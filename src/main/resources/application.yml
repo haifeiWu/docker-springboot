@@ -15,6 +15,9 @@ spring:
 
 management:
   endpoint:
+    web:
+      exposure:
+        include: "*"
     health:
       show-details: always
 
@@ -26,3 +29,7 @@ info:
     encoding: @project.build.sourceEncoding@
     java:
       version: @java.version@
+
+logging:
+  config: classpath:log4j.xml
+  path: /data/log/${spring.application.name}
