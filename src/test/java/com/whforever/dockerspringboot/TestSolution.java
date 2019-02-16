@@ -119,6 +119,82 @@ public class TestSolution {
         }
         return false;
     }
+
+    /**
+     * 如果 S[i] == "I"，那么 A[i] < A[i+1]
+     * 如果 S[i] == "D"，那么 A[i] > A[i+1]
+     *
+     * @param S
+     * @return
+     */
+    public int[] diStringMatch(String S) {
+        int length = S.length() + 1;
+        int[] result = new int[length];
+        char[] chars = S.toCharArray();
+
+        // 数组初始化
+        for (int i = 0; i < length; i++) {
+            result[i] = i;
+        }
+
+        for (int i = 0; i < length - 1; i++) {
+            if (chars[i] == 'I') {
+                // 交换
+                if (result[i] > result[i + 1]) {
+                    int temp = result[i];
+                    result[i] = result[i + 1];
+                    result[i + 1] = temp;
+                }
+            }
+
+            if (chars[i] == 'D') {
+                if (result[i] < result[i + 1]) {
+                    int temp = result[i];
+                    result[i] = result[i + 1];
+                    result[i + 1] = temp;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public int[] sortArrayByParity(int[] A) {
+        int countOdd = 0;
+        for (int i = 1; i < A.length; i++) {
+            if (A[i] % 2 == 0) {
+                int temp = A[i];
+                A[i] = A[countOdd];
+                A[countOdd] = temp;
+                countOdd++;
+            }
+        }
+        return A;
+    }
+
+    public int uniqueMorseRepresentations(String[] words) {
+        String[] mosiCode = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+
+        int index = 97;
+        Map<Character,String> codeMapping = new HashMap<>();
+        for (int i = 0; i < mosiCode.length; i++) {
+            codeMapping.put((char) index,mosiCode[i]);
+            index++;
+        }
+
+        Set<String> result = new HashSet<>();
+        for (String word : words) {
+            char[] wordArr = word.toCharArray();
+            StringBuilder targetBudiler = new StringBuilder();
+            for (int i = 0; i < wordArr.length; i++) {
+                targetBudiler.append(codeMapping.get(wordArr[i]));
+            }
+            result.add(targetBudiler.toString());
+        }
+
+        return result.size();
+    }
+
     @Test
     public void test() {
 //        int[] A = {-4,-1,0,3,10};
@@ -127,8 +203,10 @@ public class TestSolution {
 
 //        String[] mails ={"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"};
 //        System.out.println(numUniqueEmails(mails));
-        int[] A = {1,2,3,4};
-        int[][] queries = {{1,0},{-3,1},{-4,0},{2,3}};
-        sumEvenAfterQueries(A,queries);
+//        int[] A = {1,2,3,4};
+//        int[][] queries = {{1,0},{-3,1},{-4,0},{2,3}};
+//        sumEvenAfterQueries(A,queries);
+        String[] words = {"gin", "zen", "gig", "msg"};
+        System.out.println(uniqueMorseRepresentations(words));
     }
 }
