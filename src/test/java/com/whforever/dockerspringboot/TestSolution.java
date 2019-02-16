@@ -96,13 +96,39 @@ public class TestSolution {
         return 0;
     }
 
+    public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+        int[] target = new int[A.length];
+        for (int i = 0; i < queries.length; i++) {
+            int val = queries[i][0];
+            int index = queries[i][1];
+            A[index] = A[index] + val;
+            int sum = 0;
+            for (int j = 0; j < A.length; j++) {
+                if (A[j] % 2 == 0) {
+                    sum += A[j];
+                }
+            }
+            target[i] = sum;
+        }
+        return target;
+    }
+
+    public boolean isOddNumber(int num) {
+        if (num % 2 == 0) {
+            return true;
+        }
+        return false;
+    }
     @Test
     public void test() {
 //        int[] A = {-4,-1,0,3,10};
 //        int[] B = sortedSquares(A);
 //        System.out.println(Arrays.toString(B));
 
-        String[] mails ={"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"};
-        System.out.println(numUniqueEmails(mails));
+//        String[] mails ={"test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"};
+//        System.out.println(numUniqueEmails(mails));
+        int[] A = {1,2,3,4};
+        int[][] queries = {{1,0},{-3,1},{-4,0},{2,3}};
+        sumEvenAfterQueries(A,queries);
     }
 }
