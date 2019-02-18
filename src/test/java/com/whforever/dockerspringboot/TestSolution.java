@@ -195,6 +195,32 @@ public class TestSolution {
         return result.size();
     }
 
+    public int[][] flipAndInvertImage(int[][] A) {
+        Arrays.stream(A).forEach(ints -> {
+            int left = 0;
+            int right = ints.length - 1;
+            while (left < right) {
+                int temp = ints[left];
+                ints[left] = ints[right];
+                ints[right] = temp;
+
+                left++;
+                right--;
+            }
+        });
+
+        Arrays.stream(A).forEach(ints -> {
+            for (int i = 0; i < ints.length; i++) {
+                if (ints[i] == 1) {
+                    ints[i] = 0;
+                } else {
+                    ints[i] = 1;
+                }
+            }
+        });
+        return A;
+    }
+
     @Test
     public void test() {
 //        int[] A = {-4,-1,0,3,10};
