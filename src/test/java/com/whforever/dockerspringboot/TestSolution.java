@@ -221,6 +221,18 @@ public class TestSolution {
         return A;
     }
 
+    public int reverse(int x) {
+        int rev = 0;
+        while (x != 0) {
+            int pop = x % 10;
+            x /= 10;
+            if (rev > Integer.MAX_VALUE/10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) return 0;
+            if (rev < Integer.MIN_VALUE/10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) return 0;
+            rev = rev * 10 + pop;
+        }
+        return rev;
+    }
+
     @Test
     public void test() {
 //        int[] A = {-4,-1,0,3,10};
@@ -232,7 +244,8 @@ public class TestSolution {
 //        int[] A = {1,2,3,4};
 //        int[][] queries = {{1,0},{-3,1},{-4,0},{2,3}};
 //        sumEvenAfterQueries(A,queries);
-        String[] words = {"gin", "zen", "gig", "msg"};
-        System.out.println(uniqueMorseRepresentations(words));
+//        String[] words = {"gin", "zen", "gig", "msg"};
+//        System.out.println(uniqueMorseRepresentations(words));
+        System.out.println(reverse(-4568));
     }
 }
